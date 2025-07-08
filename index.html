@@ -3,1503 +3,267 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Saddam Hussain | Web Developer & Designer</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Raleway:wght@700;800&display=swap" rel="stylesheet">
+    <title>Indian Railway Ticket Generator</title>
     <style>
-        :root {
-            --primary: #6C63FF;
-            --primary-dark: #564fc9;
-            --secondary: #FF6584;
-            --dark: #1a1a2e;
-            --darker: #0d0d1a;
-            --light: #f8f9fa;
-            --gray: #6c757d;
-            --light-gray: #e9ecef;
-            --transition: all 0.3s ease;
-            --shadow: 0 5px 15px rgba(0,0,0,0.1);
-            --shadow-dark: 0 5px 15px rgba(0,0,0,0.3);
-            --radius: 10px;
-        }
-
-        .dark-mode {
-            --dark: #f8f9fa;
-            --darker: #121212;
-            --light: #1a1a2e;
-            --gray: #adb5bd;
-            --light-gray: #2d2d44;
-            --shadow: 0 5px 15px rgba(0,0,0,0.4);
-        }
-
-        * {
+        body {
+            font-family: Arial, sans-serif;
             margin: 0;
-            padding: 0;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #006747;
+            text-align: center;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        input, select {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
             box-sizing: border-box;
         }
-
-        body {
-            font-family: 'Poppins', sans-serif;
-            background-color: var(--light);
-            color: var(--dark);
-            transition: var(--transition);
-            overflow-x: hidden;
-            line-height: 1.6;
+        button {
+            background-color: #006747;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
         }
-
-        .container {
-            width: 90%;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 15px;
+        button:hover {
+            background-color: #005538;
         }
-
-        /* Header & Navigation */
-        header {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            z-index: 1000;
-            background-color: rgba(255, 255, 255, 0.9);
-            backdrop-filter: blur(10px);
-            box-shadow: var(--shadow);
-            transition: var(--transition);
-        }
-
-        .dark-mode header {
-            background-color: rgba(26, 26, 46, 0.9);
-        }
-
-        nav {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 20px 0;
-        }
-
-        .logo {
-            font-family: 'Raleway', sans-serif;
-            font-weight: 800;
-            font-size: 1.8rem;
-            color: var(--primary);
-            text-decoration: none;
-        }
-
-        .logo span {
-            color: var(--secondary);
-        }
-
-        .nav-links {
-            display: flex;
-            list-style: none;
-        }
-
-        .nav-links li {
-            margin-left: 30px;
-        }
-
-        .nav-links a {
-            text-decoration: none;
-            color: var(--dark);
-            font-weight: 500;
-            transition: var(--transition);
+        .ticket {
+            margin-top: 30px;
+            border: 2px dashed #006747;
+            padding: 20px;
+            background-color: #fff;
             position: relative;
         }
-
-        .dark-mode .nav-links a {
-            color: var(--light);
+        .ticket-header {
+            background-color: #006747;
+            color: white;
+            padding: 10px;
+            text-align: center;
+            margin: -20px -20px 20px -20px;
         }
-
-        .nav-links a:after {
-            content: '';
-            position: absolute;
-            bottom: -5px;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background: var(--primary);
-            transition: var(--transition);
+        .ticket-details {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
         }
-
-        .nav-links a:hover:after {
-            width: 100%;
-        }
-
-        .nav-links a.active:after {
-            width: 100%;
-        }
-
-        .theme-toggle {
-            background: none;
-            border: none;
-            cursor: pointer;
-            font-size: 1.5rem;
-            color: var(--dark);
-            margin-left: 20px;
-            transition: var(--transition);
-        }
-
-        .dark-mode .theme-toggle {
-            color: var(--light);
-        }
-
-        .hamburger {
-            display: none;
-            cursor: pointer;
-            background: none;
-            border: none;
-            font-size: 1.5rem;
-            color: var(--dark);
-        }
-
-        .dark-mode .hamburger {
-            color: var(--light);
-        }
-
-        /* Hero Section */
-        .hero {
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            padding: 100px 0 50px;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .hero-content {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 50px;
-        }
-
-        .hero-text {
-            flex: 1;
-        }
-
-        .hero-text h4 {
-            font-size: 1.2rem;
-            color: var(--primary);
+        .ticket-field {
             margin-bottom: 10px;
         }
-
-        .hero-text h1 {
-            font-size: 3.5rem;
-            font-weight: 700;
-            line-height: 1.2;
-            margin-bottom: 20px;
-            font-family: 'Raleway', sans-serif;
+        .ticket-field label {
+            font-weight: normal;
+            color: #666;
         }
-
-        .hero-text h1 span {
-            color: var(--primary);
+        .ticket-field div {
+            font-weight: bold;
         }
-
-        .hero-text p {
-            font-size: 1.1rem;
-            margin-bottom: 30px;
-            max-width: 600px;
-            color: var(--gray);
-        }
-
-        .hero-btns {
-            display: flex;
-            gap: 15px;
-        }
-
-        .btn {
-            display: inline-block;
-            padding: 12px 30px;
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: 500;
-            transition: var(--transition);
-            border: 2px solid var(--primary);
-        }
-
-        .btn-primary {
-            background: var(--primary);
-            color: white;
-        }
-
-        .btn-primary:hover {
-            background: var(--primary-dark);
-            transform: translateY(-3px);
-            box-shadow: var(--shadow);
-        }
-
-        .btn-outline {
-            background: transparent;
-            color: var(--primary);
-        }
-
-        .btn-outline:hover {
-            background: var(--primary);
-            color: white;
-            transform: translateY(-3px);
-            box-shadow: var(--shadow);
-        }
-
-        .hero-image {
-            flex: 1;
-            display: flex;
-            justify-content: center;
-            position: relative;
-        }
-
-        .profile-img {
-            width: 350px;
-            height: 350px;
-            border-radius: 50%;
-            object-fit: cover;
-            border: 5px solid var(--primary);
-            box-shadow: var(--shadow);
-            position: relative;
-            z-index: 2;
-            background: linear-gradient(45deg, var(--primary), var(--secondary));
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 5rem;
-            color: white;
-        }
-
-        .tech-badges {
-            position: absolute;
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 15px;
-            max-width: 400px;
-        }
-
-        .tech-badge {
-            background: white;
-            padding: 10px 20px;
-            border-radius: 50px;
-            box-shadow: var(--shadow);
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            font-weight: 500;
-            transition: var(--transition);
-            z-index: 3;
-        }
-
-        .dark-mode .tech-badge {
-            background: var(--darker);
-        }
-
-        .tech-badge:hover {
-            transform: translateY(-5px);
-        }
-
-        .badge-1 {
-            top: 0;
-            left: 0;
-        }
-
-        .badge-2 {
-            top: 0;
-            right: 0;
-        }
-
-        .badge-3 {
-            bottom: 0;
-            left: 0;
-        }
-
-        .badge-4 {
-            bottom: 0;
-            right: 0;
-        }
-
-        /* Sections */
-        section {
-            padding: 100px 0;
-        }
-
-        .section-title {
-            text-align: center;
-            margin-bottom: 60px;
-        }
-
-        .section-title h2 {
-            font-size: 2.5rem;
-            font-weight: 700;
-            color: var(--dark);
-            margin-bottom: 15px;
-            font-family: 'Raleway', sans-serif;
-            position: relative;
-            display: inline-block;
-        }
-
-        .dark-mode .section-title h2 {
-            color: var(--light);
-        }
-
-        .section-title h2:after {
-            content: '';
-            position: absolute;
-            bottom: -10px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 80px;
-            height: 4px;
-            background: var(--primary);
-            border-radius: 2px;
-        }
-
-        .section-title p {
-            color: var(--gray);
-            max-width: 600px;
-            margin: 0 auto;
-        }
-
-        /* About Section */
-        .about-content {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 50px;
-            align-items: center;
-        }
-
-        .about-text h3 {
-            font-size: 1.8rem;
-            margin-bottom: 20px;
-            color: var(--dark);
-        }
-
-        .dark-mode .about-text h3 {
-            color: var(--light);
-        }
-
-        .about-text p {
-            margin-bottom: 20px;
-            color: var(--gray);
-        }
-
-        .info-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 20px;
-            margin: 30px 0;
-        }
-
-        .info-item {
-            display: flex;
-            gap: 10px;
-        }
-
-        .info-item i {
-            color: var(--primary);
-            font-size: 1.2rem;
-        }
-
-        .info-item span {
-            font-weight: 500;
-            color: var(--dark);
-        }
-
-        .dark-mode .info-item span {
-            color: var(--light);
-        }
-
-        .skills {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 15px;
+        .disclaimer {
             margin-top: 20px;
-        }
-
-        .skill {
-            background: var(--light-gray);
-            padding: 8px 20px;
-            border-radius: 50px;
-            font-size: 0.9rem;
-            transition: var(--transition);
-        }
-
-        .dark-mode .skill {
-            background: var(--darker);
-        }
-
-        .skill:hover {
-            background: var(--primary);
-            color: white;
-            transform: translateY(-3px);
-        }
-
-        /* Projects Section */
-        .projects-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-            gap: 30px;
-        }
-
-        .project-card {
-            background: white;
-            border-radius: var(--radius);
-            overflow: hidden;
-            box-shadow: var(--shadow);
-            transition: var(--transition);
-        }
-
-        .dark-mode .project-card {
-            background: var(--darker);
-        }
-
-        .project-card:hover {
-            transform: translateY(-10px);
-            box-shadow: var(--shadow-dark);
-        }
-
-        .project-img {
-            height: 200px;
-            width: 100%;
-            background: linear-gradient(45deg, var(--primary), var(--secondary));
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-size: 3rem;
-        }
-
-        .project-content {
-            padding: 25px;
-        }
-
-        .project-content h3 {
-            font-size: 1.4rem;
-            margin-bottom: 10px;
-            color: var(--dark);
-        }
-
-        .dark-mode .project-content h3 {
-            color: var(--light);
-        }
-
-        .project-content p {
-            color: var(--gray);
-            margin-bottom: 20px;
-        }
-
-        .project-links {
-            display: flex;
-            gap: 15px;
-        }
-
-        .project-links a {
-            display: inline-block;
-            padding: 8px 20px;
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: 500;
-            transition: var(--transition);
-            font-size: 0.9rem;
-        }
-
-        .project-links .btn-primary {
-            background: var(--primary);
-            color: white;
-        }
-
-        .project-links .btn-outline {
-            border: 2px solid var(--primary);
-            color: var(--primary);
-        }
-
-        /* Services Section */
-        .services-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 30px;
-        }
-
-        .service-card {
-            background: white;
-            border-radius: var(--radius);
-            padding: 40px 30px;
-            text-align: center;
-            box-shadow: var(--shadow);
-            transition: var(--transition);
-        }
-
-        .dark-mode .service-card {
-            background: var(--darker);
-        }
-
-        .service-card:hover {
-            transform: translateY(-10px);
-            box-shadow: var(--shadow-dark);
-        }
-
-        .service-icon {
-            font-size: 3rem;
-            color: var(--primary);
-            margin-bottom: 20px;
-        }
-
-        .service-card h3 {
-            font-size: 1.5rem;
-            margin-bottom: 15px;
-            color: var(--dark);
-        }
-
-        .dark-mode .service-card h3 {
-            color: var(--light);
-        }
-
-        .service-card p {
-            color: var(--gray);
-        }
-
-        /* Resume Section */
-        .resume-content {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 50px;
-        }
-
-        .resume-column h3 {
-            font-size: 1.5rem;
-            margin-bottom: 30px;
-            color: var(--dark);
-            position: relative;
-            padding-bottom: 10px;
-        }
-
-        .dark-mode .resume-column h3 {
-            color: var(--light);
-        }
-
-        .resume-column h3:after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 50px;
-            height: 3px;
-            background: var(--primary);
-        }
-
-        .resume-item {
-            padding: 25px;
-            background: white;
-            border-radius: var(--radius);
-            margin-bottom: 20px;
-            box-shadow: var(--shadow);
-            position: relative;
-            border-left: 3px solid var(--primary);
-        }
-
-        .dark-mode .resume-item {
-            background: var(--darker);
-        }
-
-        .resume-item h4 {
-            font-size: 1.2rem;
-            margin-bottom: 5px;
-            color: var(--dark);
-        }
-
-        .dark-mode .resume-item h4 {
-            color: var(--light);
-        }
-
-        .resume-item .date {
-            display: inline-block;
-            background: var(--light-gray);
-            padding: 3px 10px;
-            border-radius: 50px;
-            font-size: 0.8rem;
-            margin-bottom: 15px;
-            color: var(--gray);
-        }
-
-        .resume-item p {
-            color: var(--gray);
-        }
-
-        .download-btn {
-            text-align: center;
-            margin-top: 40px;
-        }
-
-        /* Contact Section */
-        .contact-content {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 50px;
-        }
-
-        .contact-info {
-            display: flex;
-            flex-direction: column;
-            gap: 30px;
-        }
-
-        .contact-item {
-            display: flex;
-            gap: 15px;
-        }
-
-        .contact-icon {
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-            background: var(--light-gray);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.5rem;
-            color: var(--primary);
-            flex-shrink: 0;
-        }
-
-        .contact-text h4 {
-            font-size: 1.2rem;
-            margin-bottom: 5px;
-            color: var(--dark);
-        }
-
-        .dark-mode .contact-text h4 {
-            color: var(--light);
-        }
-
-        .contact-text p, .contact-text a {
-            color: var(--gray);
-            text-decoration: none;
-            transition: var(--transition);
-        }
-
-        .contact-text a:hover {
-            color: var(--primary);
-        }
-
-        .social-links {
-            display: flex;
-            gap: 15px;
-            margin-top: 20px;
-        }
-
-        .social-links a {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            background: var(--light-gray);
-            color: var(--dark);
-            transition: var(--transition);
-        }
-
-        .dark-mode .social-links a {
-            background: var(--darker);
-            color: var(--light);
-        }
-
-        .social-links a:hover {
-            background: var(--primary);
-            color: white;
-            transform: translateY(-3px);
-        }
-
-        .contact-form .form-group {
-            margin-bottom: 20px;
-        }
-
-        .contact-form input,
-        .contact-form textarea {
-            width: 100%;
-            padding: 15px;
-            border: 2px solid var(--light-gray);
-            border-radius: var(--radius);
-            font-family: 'Poppins', sans-serif;
-            font-size: 1rem;
-            transition: var(--transition);
-            background: var(--light-gray);
-            color: var(--dark);
-        }
-
-        .dark-mode .contact-form input,
-        .dark-mode .contact-form textarea {
-            background: var(--darker);
-            color: var(--light);
-            border-color: var(--darker);
-        }
-
-        .contact-form input:focus,
-        .contact-form textarea:focus {
-            outline: none;
-            border-color: var(--primary);
-        }
-
-        .contact-form textarea {
-            height: 150px;
-            resize: vertical;
-        }
-
-        .submit-btn {
-            background: var(--primary);
-            color: white;
-            border: none;
-            padding: 15px 40px;
-            border-radius: 50px;
-            cursor: pointer;
-            font-weight: 500;
-            font-size: 1rem;
-            transition: var(--transition);
-        }
-
-        .submit-btn:hover {
-            background: var(--primary-dark);
-            transform: translateY(-3px);
-            box-shadow: var(--shadow);
-        }
-
-        /* WhatsApp Button */
-        .whatsapp-btn {
-            position: fixed;
-            bottom: 30px;
-            right: 30px;
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-            background: #25D366;
-            color: white;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.8rem;
-            box-shadow: var(--shadow);
-            z-index: 99;
-            transition: var(--transition);
-        }
-
-        .whatsapp-btn:hover {
-            transform: translateY(-5px);
-            box-shadow: var(--shadow-dark);
-        }
-
-        /* Footer */
-        footer {
-            background: var(--darker);
-            color: white;
-            padding: 40px 0;
+            font-size: 12px;
+            color: #ff0000;
             text-align: center;
         }
-
-        .footer-content {
-            max-width: 600px;
-            margin: 0 auto;
-        }
-
-        .footer-logo {
-            font-family: 'Raleway', sans-serif;
-            font-weight: 800;
-            font-size: 2rem;
-            color: white;
-            margin-bottom: 20px;
-        }
-
-        .footer-logo span {
-            color: var(--secondary);
-        }
-
-        .footer-links {
-            display: flex;
-            justify-content: center;
-            gap: 30px;
-            margin: 20px 0;
-            list-style: none;
-        }
-
-        .footer-links a {
-            color: #adb5bd;
-            text-decoration: none;
-            transition: var(--transition);
-        }
-
-        .footer-links a:hover {
-            color: var(--primary);
-        }
-
-        .copyright {
-            color: #6c757d;
-            margin-top: 20px;
-        }
-
-        /* Responsive Design */
-        @media (max-width: 992px) {
-            .hero-content {
-                flex-direction: column-reverse;
-                text-align: center;
-            }
-            
-            .hero-btns {
-                justify-content: center;
-            }
-            
-            .tech-badges {
-                position: relative;
-                margin-top: 30px;
-                justify-content: center;
-            }
-            
-            .about-content,
-            .resume-content,
-            .contact-content {
-                grid-template-columns: 1fr;
-            }
-        }
-
-        @media (max-width: 768px) {
-            .nav-links {
-                position: fixed;
-                top: 80px;
-                right: -100%;
-                flex-direction: column;
-                background: white;
-                width: 100%;
-                height: calc(100vh - 80px);
-                padding: 50px 0;
-                transition: var(--transition);
-                box-shadow: var(--shadow);
-            }
-            
-            .dark-mode .nav-links {
-                background: var(--darker);
-            }
-            
-            .nav-links.active {
-                right: 0;
-            }
-            
-            .nav-links li {
-                margin: 15px 0;
-                text-align: center;
-            }
-            
-            .hamburger {
-                display: block;
-            }
-            
-            .hero-text h1 {
-                font-size: 2.8rem;
-            }
-            
-            .profile-img {
-                width: 280px;
-                height: 280px;
-            }
-            
-            .section-title h2 {
-                font-size: 2rem;
-            }
-        }
-
-        @media (max-width: 576px) {
-            .hero-text h1 {
-                font-size: 2.2rem;
-            }
-            
-            .projects-grid,
-            .services-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .info-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .profile-img {
-                width: 220px;
-                height: 220px;
-            }
-            
-            .project-links {
-                flex-direction: column;
-                align-items: center;
-            }
-            
-            .contact-item {
-                flex-direction: column;
-                align-items: center;
-                text-align: center;
-            }
-        }
-        
-        @media (max-width: 400px) {
-            .hero-text h1 {
-                font-size: 1.8rem;
-            }
-            
-            .profile-img {
-                width: 200px;
-                height: 200px;
-            }
-            
-            .hero-btns {
-                flex-direction: column;
-                align-items: center;
-            }
-            
-            .btn {
-                width: 100%;
-                text-align: center;
-            }
-        }
-
-        /* Animation Effects */
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        
-        .animate {
-            animation: fadeIn 0.8s ease-out forwards;
-        }
-        
-        .delay-1 { animation-delay: 0.1s; }
-        .delay-2 { animation-delay: 0.2s; }
-        .delay-3 { animation-delay: 0.3s; }
-        .delay-4 { animation-delay: 0.4s; }
-        .delay-5 { animation-delay: 0.5s; }
     </style>
 </head>
 <body>
-    <!-- WhatsApp Button -->
-    <a href="https://wa.me/916003758426" class="whatsapp-btn" target="_blank">
-        <i class="fab fa-whatsapp"></i>
-    </a>
-
-    <!-- Header -->
-    <header>
-        <div class="container">
-            <nav>
-                <a href="#" class="logo">Saddam<span>.</span></a>
-                <ul class="nav-links">
-                    <li><a href="#home" class="active">Home</a></li>
-                    <li><a href="#about">About</a></li>
-                    <li><a href="#projects">Projects</a></li>
-                    <li><a href="#services">Services</a></li>
-                    <li><a href="#resume">Resume</a></li>
-                    <li><a href="#contact">Contact</a></li>
-                </ul>
-                <button class="theme-toggle" id="themeToggle">
-                    <i class="fas fa-moon"></i>
-                </button>
-                <button class="hamburger" id="hamburger">
-                    <i class="fas fa-bars"></i>
-                </button>
-            </nav>
+    <div class="container">
+        <h1>Indian Railway Ticket Generator</h1>
+        
+        <div class="form-group">
+            <label for="from">From:</label>
+            <input type="text" id="from" placeholder="Enter origin station">
         </div>
-    </header>
-
-    <!-- Hero Section -->
-    <section class="hero" id="home">
-        <div class="container">
-            <div class="hero-content">
-                <div class="hero-text animate">
-                    <h4>Hello, I'm</h4>
-                    <h1>Saddam Hussain</h1>
-                    <h1>Web <span>Developer</span> & Designer</h1>
-                    <p>I create beautiful, functional websites and applications with a focus on user experience and modern design principles.</p>
-                    <div class="hero-btns">
-                        <a href="#projects" class="btn btn-primary">View Projects</a>
-                        <a href="#contact" class="btn btn-outline">Contact Me</a>
-                    </div>
-                </div>
-                <div class="hero-image animate delay-1">
-                    <div class="profile-img">
-                        <i class="fas fa-user"></i>
-                    </div>
-                    <div class="tech-badges">
-                        <div class="tech-badge badge-1 animate delay-2">
-                            <i class="fab fa-html5"></i>
-                            <span>HTML5</span>
-                        </div>
-                        <div class="tech-badge badge-2 animate delay-3">
-                            <i class="fab fa-css3-alt"></i>
-                            <span>CSS3</span>
-                        </div>
-                        <div class="tech-badge badge-3 animate delay-4">
-                            <i class="fab fa-js"></i>
-                            <span>JavaScript</span>
-                        </div>
-                        <div class="tech-badge badge-4 animate delay-5">
-                            <i class="fab fa-react"></i>
-                            <span>React</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
+        
+        <div class="form-group">
+            <label for="to">To:</label>
+            <input type="text" id="to" placeholder="Enter destination station">
         </div>
-    </section>
-
-    <!-- About Section -->
-    <section class="about" id="about">
-        <div class="container">
-            <div class="section-title animate">
-                <h2>About Me</h2>
-                <p>Get to know me, my skills, and my journey in web development</p>
-            </div>
-            <div class="about-content">
-                <div class="about-text animate delay-1">
-                    <h3>I'm Saddam Hussain, a Web Developer & Designer</h3>
-                    <p>I specialize in creating responsive websites and web applications with modern technologies. With a passion for both design and development, I strive to create digital experiences that are both visually appealing and highly functional.</p>
-                    <p>My approach combines technical expertise with creative thinking to solve complex problems and deliver solutions that exceed client expectations.</p>
-                    
-                    <div class="info-grid">
-                        <div class="info-item">
-                            <i class="fas fa-user"></i>
-                            <div>
-                                <span>Name:</span>
-                                <p>Saddam Hussain</p>
-                            </div>
-                        </div>
-                        <div class="info-item">
-                            <i class="fas fa-envelope"></i>
-                            <div>
-                                <span>Email:</span>
-                                <p>contact@saddam.dev</p>
-                            </div>
-                        </div>
-                        <div class="info-item">
-                            <i class="fas fa-phone"></i>
-                            <div>
-                                <span>Phone:</span>
-                                <p>+91 6003758426</p>
-                            </div>
-                        </div>
-                        <div class="info-item">
-                            <i class="fas fa-map-marker-alt"></i>
-                            <div>
-                                <span>Location:</span>
-                                <p>Barpera Road, Assam 781315</p>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <h4 style="margin-top: 30px;">Skills</h4>
-                    <div class="skills">
-                        <div class="skill">HTML5 & CSS3</div>
-                        <div class="skill">JavaScript</div>
-                        <div class="skill">React.js</div>
-                        <div class="skill">Responsive Design</div>
-                        <div class="skill">UI/UX Design</div>
-                        <div class="skill">Firebase</div>
-                        <div class="skill">Git & GitHub</div>
-                        <div class="skill">Web Performance</div>
-                    </div>
-                </div>
-                <div class="about-image animate delay-2">
-                    <div class="profile-img">
-                        <i class="fas fa-code"></i>
-                    </div>
-                </div>
-            </div>
+        
+        <div class="form-group">
+            <label for="train">Train Number/Name:</label>
+            <input type="text" id="train" placeholder="Enter train number or name">
         </div>
-    </section>
-
-    <!-- Projects Section -->
-    <section class="projects" id="projects">
-        <div class="container">
-            <div class="section-title animate">
-                <h2>My Projects</h2>
-                <p>Check out some of my recent work and projects</p>
-            </div>
-            <div class="projects-grid">
-                <div class="project-card animate delay-1">
-                    <div class="project-img">
-                        <i class="fas fa-graduation-cap"></i>
-                    </div>
-                    <div class="project-content">
-                        <h3>Edumark - Educational Platform</h3>
-                        <p>A comprehensive educational platform offering courses, resources, and learning tools for students and educators.</p>
-                        <div class="project-links">
-                            <a href="https://www.edumark.site" class="btn btn-primary" target="_blank">Live Demo</a>
-                            <a href="#" class="btn btn-outline">Details</a>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="project-card animate delay-2">
-                    <div class="project-img">
-                        <i class="fas fa-fire"></i>
-                    </div>
-                    <div class="project-content">
-                        <h3>Hotface - Social Media App</h3>
-                        <p>A modern social media application with real-time updates, multimedia sharing, and interactive features.</p>
-                        <div class="project-links">
-                            <a href="https://www.hotface.site" class="btn btn-primary" target="_blank">Live Demo</a>
-                            <a href="#" class="btn btn-outline">Details</a>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="project-card animate delay-3">
-                    <div class="project-img">
-                        <i class="fas fa-shopping-bag"></i>
-                    </div>
-                    <div class="project-content">
-                        <h3>Stylx - E-commerce Store</h3>
-                        <p>An e-commerce platform featuring a wide range of products, secure checkout, and user-friendly interface.</p>
-                        <div class="project-links">
-                            <a href="https://www.stylx.shop" class="btn btn-primary" target="_blank">Live Demo</a>
-                            <a href="#" class="btn btn-outline">Details</a>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="project-card animate delay-4">
-                    <div class="project-img">
-                        <i class="fas fa-laptop-code"></i>
-                    </div>
-                    <div class="project-content">
-                        <h3>Appify Studio - Development Agency</h3>
-                        <p>A portfolio website for a digital agency showcasing their services, projects, and client testimonials.</p>
-                        <div class="project-links">
-                            <a href="https://www.appifystudio.xyz" class="btn btn-primary" target="_blank">Live Demo</a>
-                            <a href="#" class="btn btn-outline">Details</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
+        
+        <div class="form-group">
+            <label for="date">Date of Journey:</label>
+            <input type="date" id="date">
         </div>
-    </section>
-
-    <!-- Services Section -->
-    <section class="services" id="services">
-        <div class="container">
-            <div class="section-title animate">
-                <h2>My Services</h2>
-                <p>What I can do for you and your business</p>
-            </div>
-            <div class="services-grid">
-                <div class="service-card animate delay-1">
-                    <div class="service-icon">
-                        <i class="fas fa-code"></i>
-                    </div>
-                    <h3>Web Development</h3>
-                    <p>Custom website development using modern technologies to create fast, responsive, and user-friendly websites.</p>
-                </div>
-                
-                <div class="service-card animate delay-2">
-                    <div class="service-icon">
-                        <i class="fas fa-paint-brush"></i>
-                    </div>
-                    <h3>UI/UX Design</h3>
-                    <p>Creating intuitive and visually appealing user interfaces that enhance user experience and engagement.</p>
-                </div>
-                
-                <div class="service-card animate delay-3">
-                    <div class="service-icon">
-                        <i class="fas fa-mobile-alt"></i>
-                    </div>
-                    <h3>Responsive Design</h3>
-                    <p>Building websites that look and function perfectly on all devices, from desktops to smartphones.</p>
-                </div>
-                
-                <div class="service-card animate delay-4">
-                    <div class="service-icon">
-                        <i class="fas fa-shopping-cart"></i>
-                    </div>
-                    <h3>E-commerce Solutions</h3>
-                    <p>Developing secure and scalable e-commerce platforms with seamless shopping experiences.</p>
-                </div>
-                
-                <div class="service-card animate delay-5">
-                    <div class="service-icon">
-                        <i class="fas fa-search"></i>
-                    </div>
-                    <h3>SEO Optimization</h3>
-                    <p>Optimizing websites for search engines to improve visibility and drive organic traffic.</p>
-                </div>
-                
-                <div class="service-card animate delay-6">
-                    <div class="service-icon">
-                        <i class="fas fa-tools"></i>
-                    </div>
-                    <h3>Maintenance & Support</h3>
-                    <p>Providing ongoing maintenance, updates, and support to keep your website running smoothly.</p>
-                </div>
-            </div>
+        
+        <div class="form-group">
+            <label for="class">Class:</label>
+            <select id="class">
+                <option value="SL">Sleeper (SL)</option>
+                <option value="3A">AC 3-Tier (3A)</option>
+                <option value="2A">AC 2-Tier (2A)</option>
+                <option value="1A">AC First Class (1A)</option>
+                <option value="CC">Chair Car (CC)</option>
+                <option value="EC">Executive Class (EC)</option>
+            </select>
         </div>
-    </section>
-
-    <!-- Resume Section -->
-    <section class="resume" id="resume">
-        <div class="container">
-            <div class="section-title animate">
-                <h2>My Resume</h2>
-                <p>My professional journey and qualifications</p>
+        
+        <div class="form-group">
+            <label for="passenger">Passenger Name:</label>
+            <input type="text" id="passenger" placeholder="Enter passenger name">
+        </div>
+        
+        <div class="form-group">
+            <label for="age">Age:</label>
+            <input type="number" id="age" placeholder="Enter age">
+        </div>
+        
+        <div class="form-group">
+            <label for="gender">Gender:</label>
+            <select id="gender">
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+                <option value="Other">Other</option>
+            </select>
+        </div>
+        
+        <button onclick="generateTicket()">Generate Ticket</button>
+        
+        <div id="ticket" class="ticket" style="display: none;">
+            <div class="ticket-header">
+                <h2>INDIAN RAILWAYS</h2>
+                <div>E-TICKET</div>
             </div>
-            <div class="resume-content">
-                <div class="resume-column animate delay-1">
-                    <h3>Education</h3>
-                    <div class="resume-item">
-                        <h4>Bachelor in Computer Science</h4>
-                        <span class="date">2020 - 2024</span>
-                        <p>University of Technology, Assam</p>
-                        <p>Specialized in web development and user interface design.</p>
-                    </div>
-                    
-                    <div class="resume-item">
-                        <h4>Web Development Certification</h4>
-                        <span class="date">2019</span>
-                        <p>Digital Learning Institute</p>
-                        <p>Advanced certification in modern web development technologies.</p>
-                    </div>
-                    
-                    <h3 style="margin-top: 40px;">Achievements</h3>
-                    <div class="resume-item">
-                        <h4>Best UI Design Award</h4>
-                        <span class="date">2023</span>
-                        <p>National Web Design Competition</p>
-                        <p>Awarded for innovative and user-friendly interface design.</p>
-                    </div>
+            
+            <div class="ticket-details">
+                <div class="ticket-field">
+                    <label>PNR Number:</label>
+                    <div id="t-pnr">1234567890</div>
                 </div>
-                
-                <div class="resume-column animate delay-2">
-                    <h3>Experience</h3>
-                    <div class="resume-item">
-                        <h4>Frontend Developer</h4>
-                        <span class="date">2022 - Present</span>
-                        <p>Tech Solutions Pvt. Ltd.</p>
-                        <p>Developing responsive web applications using React.js and modern CSS frameworks.</p>
-                    </div>
-                    
-                    <div class="resume-item">
-                        <h4>UI/UX Designer</h4>
-                        <span class="date">2020 - 2022</span>
-                        <p>Creative Design Agency</p>
-                        <p>Creating user interfaces and experiences for various digital products.</p>
-                    </div>
-                    
-                    <div class="resume-item">
-                        <h4>Web Development Intern</h4>
-                        <span class="date">2019 - 2020</span>
-                        <p>Digital Innovations Inc.</p>
-                        <p>Assisted in developing and maintaining client websites and applications.</p>
-                    </div>
+                <div class="ticket-field">
+                    <label>Date of Booking:</label>
+                    <div id="t-booking-date"></div>
+                </div>
+                <div class="ticket-field">
+                    <label>From:</label>
+                    <div id="t-from"></div>
+                </div>
+                <div class="ticket-field">
+                    <label>To:</label>
+                    <div id="t-to"></div>
+                </div>
+                <div class="ticket-field">
+                    <label>Train Number/Name:</label>
+                    <div id="t-train"></div>
+                </div>
+                <div class="ticket-field">
+                    <label>Date of Journey:</label>
+                    <div id="t-date"></div>
+                </div>
+                <div class="ticket-field">
+                    <label>Class:</label>
+                    <div id="t-class"></div>
+                </div>
+                <div class="ticket-field">
+                    <label>Fare:</label>
+                    <div id="t-fare">₹ 0</div>
+                </div>
+                <div class="ticket-field">
+                    <label>Passenger Name:</label>
+                    <div id="t-passenger"></div>
+                </div>
+                <div class="ticket-field">
+                    <label>Age/Gender:</label>
+                    <div id="t-age-gender"></div>
+                </div>
+                <div class="ticket-field">
+                    <label>Status:</label>
+                    <div id="t-status">CNF/B2/24</div>
                 </div>
             </div>
             
-            <div class="download-btn animate delay-3">
-                <a href="#" class="btn btn-primary">
-                    <i class="fas fa-download"></i> Download CV
-                </a>
+            <div class="disclaimer">
+                <p>This is a simulated ticket for demonstration purposes only. Creating or using fake tickets is illegal.</p>
             </div>
         </div>
-    </section>
-
-    <!-- Contact Section -->
-    <section class="contact" id="contact">
-        <div class="container">
-            <div class="section-title animate">
-                <h2>Contact Me</h2>
-                <p>Get in touch with me for any inquiries or opportunities</p>
-            </div>
-            <div class="contact-content">
-                <div class="contact-info animate delay-1">
-                    <div class="contact-item">
-                        <div class="contact-icon">
-                            <i class="fas fa-map-marker-alt"></i>
-                        </div>
-                        <div class="contact-text">
-                            <h4>Location</h4>
-                            <p>Barpera Road, Assam 781315</p>
-                        </div>
-                    </div>
-                    
-                    <div class="contact-item">
-                        <div class="contact-icon">
-                            <i class="fas fa-phone"></i>
-                        </div>
-                        <div class="contact-text">
-                            <h4>Phone</h4>
-                            <a href="tel:+916003758426">+91 6003758426</a>
-                        </div>
-                    </div>
-                    
-                    <div class="contact-item">
-                        <div class="contact-icon">
-                            <i class="fas fa-envelope"></i>
-                        </div>
-                        <div class="contact-text">
-                            <h4>Email</h4>
-                            <a href="mailto:contact@saddam.dev">contact@saddam.dev</a>
-                        </div>
-                    </div>
-                    
-                    <div class="social-links">
-                        <a href="https://www.instagram.com/needme.69x?igsh=bWVmaTRvdTlxOXl0" target="_blank">
-                            <i class="fab fa-instagram"></i>
-                        </a>
-                        <a href="https://in.linkedin.com/" target="_blank">
-                            <i class="fab fa-linkedin-in"></i>
-                        </a>
-                        <a href="https://github.com/" target="_blank">
-                            <i class="fab fa-github"></i>
-                        </a>
-                        <a href="https://twitter.com/" target="_blank">
-                            <i class="fab fa-twitter"></i>
-                        </a>
-                    </div>
-                </div>
-                
-                <div class="contact-form animate delay-2">
-                    <form id="contactForm">
-                        <div class="form-group">
-                            <input type="text" placeholder="Your Name" required>
-                        </div>
-                        <div class="form-group">
-                            <input type="email" placeholder="Your Email" required>
-                        </div>
-                        <div class="form-group">
-                            <input type="text" placeholder="Subject">
-                        </div>
-                        <div class="form-group">
-                            <textarea placeholder="Your Message" required></textarea>
-                        </div>
-                        <button type="submit" class="submit-btn">Send Message</button>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer>
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-logo">Saddam<span>.</span></div>
-                <p>Web Developer & Designer creating digital experiences that matter</p>
-                <ul class="footer-links">
-                    <li><a href="#home">Home</a></li>
-                    <li><a href="#about">About</a></li>
-                    <li><a href="#projects">Projects</a></li>
-                    <li><a href="#services">Services</a></li>
-                    <li><a href="#contact">Contact</a></li>
-                </ul>
-                <div class="copyright">
-                    &copy; 2023 Saddam Hussain. All Rights Reserved.
-                </div>
-            </div>
-        </div>
-    </footer>
+    </div>
 
     <script>
-        // Theme Toggle
-        const themeToggle = document.getElementById('themeToggle');
-        const body = document.body;
-        
-        // Check for saved theme preference
-        if (localStorage.getItem('theme') === 'dark') {
-            body.classList.add('dark-mode');
-            themeToggle.innerHTML = '<i class="fas fa-sun"></i>';
-        }
-        
-        themeToggle.addEventListener('click', () => {
-            body.classList.toggle('dark-mode');
+        function generateTicket() {
+            // Get form values
+            const from = document.getElementById('from').value || 'DELHI';
+            const to = document.getElementById('to').value || 'MUMBAI';
+            const train = document.getElementById('train').value || '12345 RAJDHANI EXP';
+            const date = document.getElementById('date').value || new Date().toISOString().split('T')[0];
+            const ticketClass = document.getElementById('class').value;
+            const passenger = document.getElementById('passenger').value || 'John Doe';
+            const age = document.getElementById('age').value || '30';
+            const gender = document.getElementById('gender').value;
             
-            if (body.classList.contains('dark-mode')) {
-                localStorage.setItem('theme', 'dark');
-                themeToggle.innerHTML = '<i class="fas fa-sun"></i>';
-            } else {
-                localStorage.setItem('theme', 'light');
-                themeToggle.innerHTML = '<i class="fas fa-moon"></i>';
+            // Calculate fare based on class
+            let fare = 0;
+            switch(ticketClass) {
+                case 'SL': fare = 450; break;
+                case '3A': fare = 1200; break;
+                case '2A': fare = 1800; break;
+                case '1A': fare = 3000; break;
+                case 'CC': fare = 800; break;
+                case 'EC': fare = 1500; break;
             }
-        });
-        
-        // Mobile Navigation Toggle
-        const hamburger = document.getElementById('hamburger');
-        const navLinks = document.querySelector('.nav-links');
-        
-        hamburger.addEventListener('click', () => {
-            navLinks.classList.toggle('active');
-        });
-        
-        // Smooth Scrolling for Navigation Links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                
-                const targetId = this.getAttribute('href');
-                const targetElement = document.querySelector(targetId);
-                
-                if (targetElement) {
-                    window.scrollTo({
-                        top: targetElement.offsetTop - 80,
-                        behavior: 'smooth'
-                    });
-                    
-                    // Close mobile menu if open
-                    navLinks.classList.remove('active');
-                    
-                    // Update active link
-                    document.querySelectorAll('.nav-links a').forEach(link => {
-                        link.classList.remove('active');
-                    });
-                    this.classList.add('active');
-                }
-            });
-        });
-        
-        // Form Submission
-        const contactForm = document.getElementById('contactForm');
-        contactForm.addEventListener('submit', function(e) {
-            e.preventDefault();
             
-            // In a real implementation, you would send the form data to a server
-            alert('Thank you for your message! I will get back to you soon.');
-            contactForm.reset();
-        });
-        
-        // Add active class to nav links based on scroll position
-        window.addEventListener('scroll', () => {
-            const sections = document.querySelectorAll('section');
-            const navLinks = document.querySelectorAll('.nav-links a');
+            // Generate random PNR
+            const pnr = Math.floor(1000000000 + Math.random() * 9000000000).toString();
             
-            let current = '';
+            // Set ticket values
+            document.getElementById('t-pnr').textContent = pnr;
+            document.getElementById('t-from').textContent = from;
+            document.getElementById('t-to').textContent = to;
+            document.getElementById('t-train').textContent = train;
+            document.getElementById('t-date').textContent = formatDate(date);
+            document.getElementById('t-class').textContent = getClassName(ticketClass);
+            document.getElementById('t-fare').textContent = '₹ ' + fare;
+            document.getElementById('t-passenger').textContent = passenger;
+            document.getElementById('t-age-gender').textContent = age + '/' + gender;
             
-            sections.forEach(section => {
-                const sectionTop = section.offsetTop;
-                const sectionHeight = section.clientHeight;
-                
-                if (pageYOffset >= (sectionTop - 100)) {
-                    current = section.getAttribute('id');
-                }
-            });
+            // Set booking date to today
+            const today = new Date();
+            document.getElementById('t-booking-date').textContent = formatDate(today.toISOString().split('T')[0]);
             
-            navLinks.forEach(link => {
-                link.classList.remove('active');
-                if (link.getAttribute('href').substring(1) === current) {
-                    link.classList.add('active');
-                }
-            });
-        });
-        
-        // Animation on scroll
-        function animateOnScroll() {
-            const elements = document.querySelectorAll('.animate');
-            elements.forEach(element => {
-                const elementPosition = element.getBoundingClientRect().top;
-                const screenPosition = window.innerHeight / 1.3;
-                
-                if (elementPosition < screenPosition) {
-                    element.style.opacity = 1;
-                    element.style.visibility = 'visible';
-                }
-            });
+            // Show ticket
+            document.getElementById('ticket').style.display = 'block';
         }
         
-        // Initialize animations
-        window.addEventListener('scroll', animateOnScroll);
-        window.addEventListener('load', animateOnScroll);
+        function formatDate(dateStr) {
+            const date = new Date(dateStr);
+            return date.toLocaleDateString('en-IN', { day: 'numeric', month: 'short', year: 'numeric' });
+        }
+        
+        function getClassName(classCode) {
+            const classes = {
+                'SL': 'Sleeper (SL)',
+                '3A': 'AC 3-Tier (3A)',
+                '2A': 'AC 2-Tier (2A)',
+                '1A': 'AC First Class (1A)',
+                'CC': 'Chair Car (CC)',
+                'EC': 'Executive Class (EC)'
+            };
+            return classes[classCode] || classCode;
+        }
     </script>
 </body>
 </html>
