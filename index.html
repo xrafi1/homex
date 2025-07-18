@@ -3,267 +3,371 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Indian Railway Ticket Generator</title>
+    <title>Saddam - Web Developer & B.Tech Student</title>
+    <meta name="description" content="Saddam - Web Developer & B.Tech Computer Science student specializing in building responsive, user-friendly websites and web applications.">
+    <meta name="keywords" content="Saddam, Web Developer, B.Tech Student, Computer Science, Frontend Developer, Backend Developer">
+    <meta name="author" content="Saddam">
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts - Poppins -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 20px;
-            background-color: #f5f5f5;
+        * {
+            font-family: 'Poppins', sans-serif;
         }
-        .container {
-            max-width: 800px;
-            margin: 0 auto;
-            background-color: white;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        
+        html {
+            scroll-behavior: smooth;
         }
-        h1 {
-            color: #006747;
-            text-align: center;
+        
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
         }
-        .form-group {
-            margin-bottom: 15px;
+        
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
         }
-        label {
-            display: block;
-            margin-bottom: 5px;
-            font-weight: bold;
+        
+        .hero-gradient {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
         }
-        input, select {
-            width: 100%;
-            padding: 8px;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-            box-sizing: border-box;
+        
+        .btn-hover {
+            transition: all 0.3s ease;
         }
-        button {
-            background-color: #006747;
-            color: white;
-            border: none;
-            padding: 10px 15px;
-            border-radius: 4px;
-            cursor: pointer;
-            font-size: 16px;
+        
+        .btn-hover:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
         }
-        button:hover {
-            background-color: #005538;
+        
+        .contact-card {
+            transition: all 0.3s ease;
         }
-        .ticket {
-            margin-top: 30px;
-            border: 2px dashed #006747;
-            padding: 20px;
-            background-color: #fff;
-            position: relative;
+        
+        .contact-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
         }
-        .ticket-header {
-            background-color: #006747;
-            color: white;
-            padding: 10px;
-            text-align: center;
-            margin: -20px -20px 20px -20px;
+        
+        .icon-bounce {
+            transition: transform 0.3s ease;
         }
-        .ticket-details {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 15px;
+        
+        .icon-bounce:hover {
+            transform: scale(1.2);
         }
-        .ticket-field {
-            margin-bottom: 10px;
+        
+        .skill-card {
+            transition: all 0.3s ease;
         }
-        .ticket-field label {
-            font-weight: normal;
-            color: #666;
-        }
-        .ticket-field div {
-            font-weight: bold;
-        }
-        .disclaimer {
-            margin-top: 20px;
-            font-size: 12px;
-            color: #ff0000;
-            text-align: center;
+        
+        .skill-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
         }
     </style>
 </head>
-<body>
-    <div class="container">
-        <h1>Indian Railway Ticket Generator</h1>
-        
-        <div class="form-group">
-            <label for="from">From:</label>
-            <input type="text" id="from" placeholder="Enter origin station">
-        </div>
-        
-        <div class="form-group">
-            <label for="to">To:</label>
-            <input type="text" id="to" placeholder="Enter destination station">
-        </div>
-        
-        <div class="form-group">
-            <label for="train">Train Number/Name:</label>
-            <input type="text" id="train" placeholder="Enter train number or name">
-        </div>
-        
-        <div class="form-group">
-            <label for="date">Date of Journey:</label>
-            <input type="date" id="date">
-        </div>
-        
-        <div class="form-group">
-            <label for="class">Class:</label>
-            <select id="class">
-                <option value="SL">Sleeper (SL)</option>
-                <option value="3A">AC 3-Tier (3A)</option>
-                <option value="2A">AC 2-Tier (2A)</option>
-                <option value="1A">AC First Class (1A)</option>
-                <option value="CC">Chair Car (CC)</option>
-                <option value="EC">Executive Class (EC)</option>
-            </select>
-        </div>
-        
-        <div class="form-group">
-            <label for="passenger">Passenger Name:</label>
-            <input type="text" id="passenger" placeholder="Enter passenger name">
-        </div>
-        
-        <div class="form-group">
-            <label for="age">Age:</label>
-            <input type="number" id="age" placeholder="Enter age">
-        </div>
-        
-        <div class="form-group">
-            <label for="gender">Gender:</label>
-            <select id="gender">
-                <option value="Male">Male</option>
-                <option value="Female">Female</option>
-                <option value="Other">Other</option>
-            </select>
-        </div>
-        
-        <button onclick="generateTicket()">Generate Ticket</button>
-        
-        <div id="ticket" class="ticket" style="display: none;">
-            <div class="ticket-header">
-                <h2>INDIAN RAILWAYS</h2>
-                <div>E-TICKET</div>
-            </div>
-            
-            <div class="ticket-details">
-                <div class="ticket-field">
-                    <label>PNR Number:</label>
-                    <div id="t-pnr">1234567890</div>
-                </div>
-                <div class="ticket-field">
-                    <label>Date of Booking:</label>
-                    <div id="t-booking-date"></div>
-                </div>
-                <div class="ticket-field">
-                    <label>From:</label>
-                    <div id="t-from"></div>
-                </div>
-                <div class="ticket-field">
-                    <label>To:</label>
-                    <div id="t-to"></div>
-                </div>
-                <div class="ticket-field">
-                    <label>Train Number/Name:</label>
-                    <div id="t-train"></div>
-                </div>
-                <div class="ticket-field">
-                    <label>Date of Journey:</label>
-                    <div id="t-date"></div>
-                </div>
-                <div class="ticket-field">
-                    <label>Class:</label>
-                    <div id="t-class"></div>
-                </div>
-                <div class="ticket-field">
-                    <label>Fare:</label>
-                    <div id="t-fare">₹ 0</div>
-                </div>
-                <div class="ticket-field">
-                    <label>Passenger Name:</label>
-                    <div id="t-passenger"></div>
-                </div>
-                <div class="ticket-field">
-                    <label>Age/Gender:</label>
-                    <div id="t-age-gender"></div>
-                </div>
-                <div class="ticket-field">
-                    <label>Status:</label>
-                    <div id="t-status">CNF/B2/24</div>
-                </div>
-            </div>
-            
-            <div class="disclaimer">
-                <p>This is a simulated ticket for demonstration purposes only. Creating or using fake tickets is illegal.</p>
+<body class="bg-white text-gray-800">
+    
+    <!-- Hero Section -->
+    <section id="hero" class="hero-gradient min-h-screen flex items-center justify-center text-white relative overflow-hidden">
+        <div class="absolute inset-0 bg-black opacity-20"></div>
+        <div class="container mx-auto px-6 text-center relative z-10">
+            <div class="fade-in">
+                <h1 class="text-5xl md:text-7xl font-bold mb-4 leading-tight">
+                    Hi, I'm <span class="text-yellow-300">Saddam</span>
+                </h1>
+                <p class="text-xl md:text-2xl mb-8 font-light">
+                    Web Developer & B.Tech Student
+                </p>
+                <p class="text-lg md:text-xl mb-12 max-w-2xl mx-auto opacity-90">
+                    "Building impactful digital experiences"
+                </p>
+                <a href="#contact" class="inline-block bg-yellow-400 text-gray-900 px-8 py-4 rounded-full font-semibold text-lg btn-hover">
+                    Get In Touch
+                </a>
             </div>
         </div>
-    </div>
+        
+        <!-- Floating elements for visual appeal -->
+        <div class="absolute top-20 left-10 w-20 h-20 bg-yellow-300 rounded-full opacity-20 animate-pulse"></div>
+        <div class="absolute bottom-20 right-10 w-16 h-16 bg-white rounded-full opacity-10 animate-bounce"></div>
+        <div class="absolute top-1/2 left-20 w-8 h-8 bg-yellow-400 rounded-full opacity-30"></div>
+    </section>
 
+    <!-- About Me Section -->
+    <section id="about" class="py-20 bg-gray-50">
+        <div class="container mx-auto px-6">
+            <div class="max-w-6xl mx-auto">
+                <div class="fade-in text-center mb-16">
+                    <h2 class="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
+                        About Me
+                    </h2>
+                    <div class="w-24 h-1 bg-blue-500 mx-auto"></div>
+                </div>
+                
+                <div class="fade-in bg-white rounded-2xl shadow-xl p-8 md:p-12 mb-16">
+                    <div class="flex flex-col md:flex-row items-center gap-8">
+                        <div class="w-48 h-48 bg-gradient-to-br from-blue-400 to-purple-500 rounded-full flex items-center justify-center text-white text-6xl font-bold shadow-lg">
+                            S
+                        </div>
+                        <div class="flex-1">
+                            <p class="text-lg leading-relaxed text-gray-700 mb-6">
+                                I'm Saddam, a passionate Web Developer and B.Tech Computer Science student. I specialize in building responsive, user-friendly websites and web applications. Always eager to learn new technologies and improve my skills, I strive to create impactful digital experiences.
+                            </p>
+                            <p class="text-lg leading-relaxed text-gray-700 mb-6">
+                                With a strong foundation in both frontend and backend technologies, I bring ideas to life through clean, efficient code and thoughtful user experiences.
+                            </p>
+                            <p class="text-lg leading-relaxed text-gray-700">
+                                When I'm not coding, you'll find me exploring new tech trends, contributing to open-source projects, or mentoring fellow developers.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Stats Section -->
+                <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6 mb-16">
+                    <div class="fade-in bg-white rounded-xl shadow-md p-6 text-center">
+                        <div class="text-3xl font-bold text-blue-600 mb-2">B.Tech</div>
+                        <div class="text-gray-600">Computer Science</div>
+                    </div>
+                    <div class="fade-in bg-white rounded-xl shadow-md p-6 text-center">
+                        <div class="text-3xl font-bold text-blue-600 mb-2">3+</div>
+                        <div class="text-gray-600">Years Experience</div>
+                    </div>
+                    <div class="fade-in bg-white rounded-xl shadow-md p-6 text-center">
+                        <div class="text-3xl font-bold text-blue-600 mb-2">20+</div>
+                        <div class="text-gray-600">Projects</div>
+                    </div>
+                    <div class="fade-in bg-white rounded-xl shadow-md p-6 text-center">
+                        <div class="text-3xl font-bold text-blue-600 mb-2">100%</div>
+                        <div class="text-gray-600">Passion</div>
+                    </div>
+                    <div class="fade-in bg-white rounded-xl shadow-md p-6 text-center">
+                        <div class="text-3xl font-bold text-blue-600 mb-2">24/7</div>
+                        <div class="text-gray-600">Coffee Mode</div>
+                    </div>
+                    <div class="fade-in bg-white rounded-xl shadow-md p-6 text-center">
+                        <div class="text-3xl font-bold text-blue-600 mb-2">∞</div>
+                        <div class="text-gray-600">Creativity</div>
+                    </div>
+                </div>
+                
+                <!-- Skills Section -->
+                <div class="fade-in text-center mb-8">
+                    <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
+                        My Skills
+                    </h2>
+                    <p class="text-lg text-gray-600 max-w-3xl mx-auto">
+                        I've worked with a wide range of technologies in web development. Here are some of my core competencies.
+                    </p>
+                </div>
+                
+                <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+                    <!-- Frontend Skills -->
+                    <div class="fade-in skill-card bg-white rounded-xl shadow-md p-6">
+                        <div class="text-4xl mb-4">🖥️</div>
+                        <h3 class="text-xl font-semibold mb-2">Frontend Development</h3>
+                        <p class="text-gray-600">HTML5, CSS3, JavaScript, React, Vue.js, Angular</p>
+                    </div>
+                    <div class="fade-in skill-card bg-white rounded-xl shadow-md p-6">
+                        <div class="text-4xl mb-4">⚛️</div>
+                        <h3 class="text-xl font-semibold mb-2">React</h3>
+                        <p class="text-gray-600">Building dynamic single-page applications</p>
+                    </div>
+                    <div class="fade-in skill-card bg-white rounded-xl shadow-md p-6">
+                        <div class="text-4xl mb-4">🌿</div>
+                        <h3 class="text-xl font-semibold mb-2">Vue.js</h3>
+                        <p class="text-gray-600">Progressive framework for UI development</p>
+                    </div>
+                    <div class="fade-in skill-card bg-white rounded-xl shadow-md p-6">
+                        <div class="text-4xl mb-4">🎨</div>
+                        <h3 class="text-xl font-semibold mb-2">CSS3</h3>
+                        <p class="text-gray-600">Styling and animations for modern web</p>
+                    </div>
+                    <div class="fade-in skill-card bg-white rounded-xl shadow-md p-6">
+                        <div class="text-4xl mb-4">⚡</div>
+                        <h3 class="text-xl font-semibold mb-2">JavaScript</h3>
+                        <p class="text-gray-600">ES6+, TypeScript, and modern JS frameworks</p>
+                    </div>
+                    <div class="fade-in skill-card bg-white rounded-xl shadow-md p-6">
+                        <div class="text-4xl mb-4">💅</div>
+                        <h3 class="text-xl font-semibold mb-2">Tailwind CSS</h3>
+                        <p class="text-gray-600">Utility-first CSS framework</p>
+                    </div>
+                    <div class="fade-in skill-card bg-white rounded-xl shadow-md p-6">
+                        <div class="text-4xl mb-4">📦</div>
+                        <h3 class="text-xl font-semibold mb-2">Bootstrap</h3>
+                        <p class="text-gray-600">Responsive design framework</p>
+                    </div>
+                    <div class="fade-in skill-card bg-white rounded-xl shadow-md p-6">
+                        <div class="text-4xl mb-4">🅰️</div>
+                        <h3 class="text-xl font-semibold mb-2">Angular</h3>
+                        <p class="text-gray-600">Platform for building mobile and desktop apps</p>
+                    </div>
+                    
+                    <!-- Backend Skills -->
+                    <div class="fade-in skill-card bg-white rounded-xl shadow-md p-6">
+                        <div class="text-4xl mb-4">⚙️</div>
+                        <h3 class="text-xl font-semibold mb-2">Backend Development</h3>
+                        <p class="text-gray-600">Node.js, Express.js, Python, PHP</p>
+                    </div>
+                    <div class="fade-in skill-card bg-white rounded-xl shadow-md p-6">
+                        <div class="text-4xl mb-4">🖥️</div>
+                        <h3 class="text-xl font-semibold mb-2">Node.js</h3>
+                        <p class="text-gray-600">JavaScript runtime environment</p>
+                    </div>
+                    <div class="fade-in skill-card bg-white rounded-xl shadow-md p-6">
+                        <div class="text-4xl mb-4">🚀</div>
+                        <h3 class="text-xl font-semibold mb-2">Express.js</h3>
+                        <p class="text-gray-600">Web application framework for Node.js</p>
+                    </div>
+                    <div class="fade-in skill-card bg-white rounded-xl shadow-md p-6">
+                        <div class="text-4xl mb-4">🐍</div>
+                        <h3 class="text-xl font-semibold mb-2">Python</h3>
+                        <p class="text-gray-600">Django, Flask, and data science applications</p>
+                    </div>
+                    <div class="fade-in skill-card bg-white rounded-xl shadow-md p-6">
+                        <div class="text-4xl mb-4">🗄️</div>
+                        <h3 class="text-xl font-semibold mb-2">MySQL</h3>
+                        <p class="text-gray-600">Relational database management</p>
+                    </div>
+                    <div class="fade-in skill-card bg-white rounded-xl shadow-md p-6">
+                        <div class="text-4xl mb-4">🍃</div>
+                        <h3 class="text-xl font-semibold mb-2">MongoDB</h3>
+                        <p class="text-gray-600">NoSQL database program</p>
+                    </div>
+                    <div class="fade-in skill-card bg-white rounded-xl shadow-md p-6">
+                        <div class="text-4xl mb-4">🔥</div>
+                        <h3 class="text-xl font-semibold mb-2">Firebase</h3>
+                        <p class="text-gray-600">Platform for web and mobile apps</p>
+                    </div>
+                    <div class="fade-in skill-card bg-white rounded-xl shadow-md p-6">
+                        <div class="text-4xl mb-4">🐘</div>
+                        <h3 class="text-xl font-semibold mb-2">PostgreSQL</h3>
+                        <p class="text-gray-600">Advanced open-source database</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-20 bg-white">
+        <div class="container mx-auto px-6">
+            <div class="max-w-4xl mx-auto">
+                <div class="fade-in text-center mb-16">
+                    <h2 class="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
+                        Let's Connect
+                    </h2>
+                    <div class="w-24 h-1 bg-blue-500 mx-auto mb-6"></div>
+                    <p class="text-xl text-gray-600">
+                        Ready to bring your ideas to life? Let's chat!
+                    </p>
+                </div>
+                
+                <div class="grid md:grid-cols-3 gap-8">
+                    <!-- WhatsApp -->
+                    <div class="fade-in contact-card bg-green-50 rounded-2xl p-8 text-center border border-green-100">
+                        <div class="w-16 h-16 bg-green-500 rounded-full flex items-center justify-center mx-auto mb-6 icon-bounce">
+                            <i class="fab fa-whatsapp text-white text-2xl"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold text-gray-900 mb-4">WhatsApp</h3>
+                        <a href="https://wa.me/918876001303" target="_blank" class="text-green-600 hover:text-green-700 font-medium text-lg transition-colors">
+                            +91 8876001303
+                        </a>
+                    </div>
+                    
+                    <!-- Email -->
+                    <div class="fade-in contact-card bg-blue-50 rounded-2xl p-8 text-center border border-blue-100">
+                        <div class="w-16 h-16 bg-blue-500 rounded-full flex items-center justify-center mx-auto mb-6 icon-bounce">
+                            <i class="fas fa-envelope text-white text-2xl"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold text-gray-900 mb-4">Email</h3>
+                        <a href="mailto:heyxrafi@hotmail.com" class="text-blue-600 hover:text-blue-700 font-medium text-lg transition-colors">
+                            heyxrafi@hotmail.com
+                        </a>
+                    </div>
+                    
+                    <!-- Location -->
+                    <div class="fade-in contact-card bg-purple-50 rounded-2xl p-8 text-center border border-purple-100">
+                        <div class="w-16 h-16 bg-purple-500 rounded-full flex items-center justify-center mx-auto mb-6 icon-bounce">
+                            <i class="fas fa-map-marker-alt text-white text-2xl"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold text-gray-900 mb-4">Location</h3>
+                        <p class="text-purple-600 font-medium text-lg">
+                            Barpeta Road<br>
+                            Assam, India
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-8">
+        <div class="container mx-auto px-6 text-center">
+            <p class="text-gray-400">
+                © 2025 Saddam | All rights reserved
+            </p>
+        </div>
+    </footer>
+
+    <!-- JavaScript for animations -->
     <script>
-        function generateTicket() {
-            // Get form values
-            const from = document.getElementById('from').value || 'DELHI';
-            const to = document.getElementById('to').value || 'MUMBAI';
-            const train = document.getElementById('train').value || '12345 RAJDHANI EXP';
-            const date = document.getElementById('date').value || new Date().toISOString().split('T')[0];
-            const ticketClass = document.getElementById('class').value;
-            const passenger = document.getElementById('passenger').value || 'John Doe';
-            const age = document.getElementById('age').value || '30';
-            const gender = document.getElementById('gender').value;
-            
-            // Calculate fare based on class
-            let fare = 0;
-            switch(ticketClass) {
-                case 'SL': fare = 450; break;
-                case '3A': fare = 1200; break;
-                case '2A': fare = 1800; break;
-                case '1A': fare = 3000; break;
-                case 'CC': fare = 800; break;
-                case 'EC': fare = 1500; break;
-            }
-            
-            // Generate random PNR
-            const pnr = Math.floor(1000000000 + Math.random() * 9000000000).toString();
-            
-            // Set ticket values
-            document.getElementById('t-pnr').textContent = pnr;
-            document.getElementById('t-from').textContent = from;
-            document.getElementById('t-to').textContent = to;
-            document.getElementById('t-train').textContent = train;
-            document.getElementById('t-date').textContent = formatDate(date);
-            document.getElementById('t-class').textContent = getClassName(ticketClass);
-            document.getElementById('t-fare').textContent = '₹ ' + fare;
-            document.getElementById('t-passenger').textContent = passenger;
-            document.getElementById('t-age-gender').textContent = age + '/' + gender;
-            
-            // Set booking date to today
-            const today = new Date();
-            document.getElementById('t-booking-date').textContent = formatDate(today.toISOString().split('T')[0]);
-            
-            // Show ticket
-            document.getElementById('ticket').style.display = 'block';
-        }
-        
-        function formatDate(dateStr) {
-            const date = new Date(dateStr);
-            return date.toLocaleDateString('en-IN', { day: 'numeric', month: 'short', year: 'numeric' });
-        }
-        
-        function getClassName(classCode) {
-            const classes = {
-                'SL': 'Sleeper (SL)',
-                '3A': 'AC 3-Tier (3A)',
-                '2A': 'AC 2-Tier (2A)',
-                '1A': 'AC First Class (1A)',
-                'CC': 'Chair Car (CC)',
-                'EC': 'Executive Class (EC)'
-            };
-            return classes[classCode] || classCode;
-        }
+        // Fade in animation on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        // Observe all fade-in elements
+        document.querySelectorAll('.fade-in').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Smooth scroll for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Add some interactive elements
+        document.addEventListener('DOMContentLoaded', function() {
+            // Trigger initial animations for hero section
+            setTimeout(() => {
+                document.querySelector('#hero .fade-in').classList.add('visible');
+            }, 300);
+        });
     </script>
 </body>
 </html>
